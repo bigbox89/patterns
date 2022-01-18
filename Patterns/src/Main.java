@@ -36,6 +36,7 @@ public class Main {
         System.out.println(beverage3.getDescription() + " $" + beverage3.cost());
         */
 
+        /*
         //используя ппатерн фасад, привязываем все действия системы к одному пульту
         Fasad.Amplifier amp = new Fasad.Amplifier();
         Fasad.Tuner tuner = new Fasad.Tuner();
@@ -49,5 +50,26 @@ public class Main {
         Fasad.HomeTheaterFacade homeTheater = new Fasad.HomeTheaterFacade(amp, tuner,dvd,cd,projector, screen, lights, popper);
         homeTheater.watchMovie("Matrix");   //Упрощенный интерфейс используется для запуска и для прекращения просмотра
         homeTheater.endMovie();
+        */
+
+        //тестируем компоновщика
+        Componovshik.MenuComponent pancakeHouseMenu = new Componovshik.Menu("Pancake House Menu", "Breakfast");
+        Componovshik.MenuComponent dinerMenu = new Componovshik.Menu("Diner Menu", "Lunch");
+        Componovshik.MenuComponent cafeMenu = new Componovshik.Menu("Cafe Menu", "Dinner");
+        Componovshik.MenuComponent dessertMenu = new Componovshik.Menu("Dessert Menu", "Dessert of course!");
+        Componovshik.MenuComponent allMenus = new Componovshik.Menu("All Menus", "All Menus combined");
+
+        allMenus.add(pancakeHouseMenu);
+        allMenus.add(dinerMenu);
+        allMenus.add(cafeMenu);
+
+        dinerMenu.add(new Componovshik.MenuItem("Pasta", "Spaghetti with Marinara Sauce, and a slice of sourdough bread", true, 3.89));
+        dinerMenu.add(dessertMenu);
+
+        dessertMenu.add(new Componovshik.MenuItem("Apple Pie","Apple pie with a flakey crust, topped with vanilla icecream",true,1.59));
+
+        Componovshik.Waitress waitress = new Componovshik.Waitress(allMenus);
+        waitress.printMenu();
     }
 }
+
