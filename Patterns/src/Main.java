@@ -35,5 +35,19 @@ public class Main {
         beverage3 = new Decorator.Whip(beverage3);
         System.out.println(beverage3.getDescription() + " $" + beverage3.cost());
         */
+
+        //используя ппатерн фасад, привязываем все действия системы к одному пульту
+        Fasad.Amplifier amp = new Fasad.Amplifier();
+        Fasad.Tuner tuner = new Fasad.Tuner();
+        Fasad.DvdPlayer dvd = new Fasad.DvdPlayer();
+        Fasad.CdPlayer cd = new Fasad.CdPlayer();
+        Fasad.Projector projector = new Fasad.Projector();
+        Fasad.Screen screen = new Fasad.Screen();
+        Fasad.TheaterLights lights = new Fasad.TheaterLights();
+        Fasad.PopcornPopper popper = new Fasad.PopcornPopper();
+        //Создаем фасад со всеми компонентами подсистемы
+        Fasad.HomeTheaterFacade homeTheater = new Fasad.HomeTheaterFacade(amp, tuner,dvd,cd,projector, screen, lights, popper);
+        homeTheater.watchMovie("Matrix");   //Упрощенный интерфейс используется для запуска и для прекращения просмотра
+        homeTheater.endMovie();
     }
 }
